@@ -1,0 +1,15 @@
+class Solution:
+    def pattern14(self, n):
+        for i in range(n):
+            for j in range(n, i, -1):
+                print(chr(ord('A') + n-j), end = "")
+            print()
+            
+obj = Solution()
+obj.pattern14(5)
+
+ABCDE
+ABCD
+ABC
+AB
+A
