@@ -1,0 +1,19 @@
+ass Solution:
+    def pattern17(self, n):
+        for i in range(n, 0, -1):
+            for j in range(i-1):
+                print(" ", end = " ")
+            for k in range(0, n-(i-1)):
+                print(chr(ord('A') + k), end=" ")
+            for l in range(k):
+                print(chr(ord('A') + k-(l+1)), end = " ")
+            print()
+            
+obj = Solution()
+obj.pattern17(5)
+
+        A 
+      A B A 
+    A B C B A 
+  A B C D C B A 
+A B C D E D C B A 
