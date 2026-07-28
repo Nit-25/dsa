@@ -1,0 +1,31 @@
+class Solution:
+    def pattern19(self, n):
+        for i in range(n):
+            for j in range(i+1):
+                print("*", end=" ")
+            for k in range(j+1, n*2-(i+1)):
+                print(" ", end=" ")
+            for l in range(n*2-i, n*2+1):
+                print("*", end=" ")
+            print()
+        for p in range(n-1):
+            for q in range(p+1, n):
+                print("*", end = " ")
+            for r in range((p+1)*2):
+                print(" ", end = " ")
+            for s in range((n-1)-p):
+                print("*", end = " ")
+            print()
+            
+            
+obj = Solution()
+obj.pattern19(4)
+
+
+*             * 
+* *         * * 
+* * *     * * * 
+* * * * * * * * 
+* * *     * * * 
+* *         * * 
+*             * 
