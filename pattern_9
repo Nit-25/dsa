@@ -1,0 +1,27 @@
+class Solution:
+    def pattern22(self, n):
+        for i in range(n):
+            for j in range(n, i+1, -1):
+                print(" ", end = " ")
+            for k in range(i*2 + 1):
+                print("*", end = " ")
+            print()
+        for p in range(n, 0, -1):
+            for r in range(n-p):
+                print(" ", end = " ")
+            for s in range(p*2 - 1):
+                print("*", end = " ")
+            print()
+            
+            
+obj = Solution()
+obj.pattern22(4)
+
+      * 
+    * * * 
+  * * * * * 
+* * * * * * * 
+* * * * * * * 
+  * * * * * 
+    * * * 
+      * 
