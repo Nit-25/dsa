@@ -1,21 +1,27 @@
-1        1
-12      21
-123    321
-1234  4321
-1234554321
-
-
 class Solution:
-    def pattern12(self, n):
-        for i in range(n):
-            for j in range(n*2):
-                if j <= i:
-                    print(j+1, end ="")
-                elif j >= (n*2 - 1) - i:
-                    print((n*2-(j+1)) + 1, end="")
-                else:
-                    
-                    #     print(j+1, end = "")
-                    print(" ", end="")
-            print()
+    def pattern22(self, n):
+        for i in range(1, n+1):
+            # Left
+            for j in range(i):
+                print(j+1, end = " ")
 
+            # Middle
+            for k in range(n*2 - (i*2)):
+                print(" ", end = " ")
+
+            #Right
+            for l in range(i):
+                print(i-l, end = " ")
+            print()
+            
+            
+            
+obj = Solution()
+obj.pattern22(5)
+
+
+1                 1 
+1 2             2 1 
+1 2 3         3 2 1 
+1 2 3 4     4 3 2 1 
+1 2 3 4 5 5 4 3 2 1 
