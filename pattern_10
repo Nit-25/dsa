@@ -1,0 +1,253 @@
+class Solution:
+    def pattern22(self, n):
+        for i in range(n*2):
+            stars = n - abs(n-1-i)
+            
+            for i in range(stars):
+                print("*", end = " ")
+            print()
+            
+            
+            
+            
+obj = Solution()
+obj.pattern22(5)
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+
+
+This is an excellent question. And this is exactly the difference between **writing code** and **deriving formulas**.
+
+I **didn't memorize** this formula. I derived it by looking at the pattern.
+
+Let's go through the thought process.
+
+---
+
+## Step 1: Write down the row numbers
+
+For `n = 5`:
+
+```text
+Row (i):    0 1 2 3 4 5 6 7 8
+Stars:      1 2 3 4 5 4 3 2 1
+```
+
+Now ask yourself:
+
+> **What is special about this pattern?**
+
+It's perfectly symmetric around row **4**.
+
+```text
+0 1 2 3 [4] 5 6 7 8
+```
+
+The middle row has the maximum stars.
+
+---
+
+## Step 2: Measure the distance from the middle
+
+The middle is
+
+```python
+n - 1
+```
+
+For `n = 5`
+
+```text
+middle = 4
+```
+
+Now compute
+
+```python
+i - middle
+```
+
+| i | i - 4 |
+| - | ----- |
+| 0 | -4    |
+| 1 | -3    |
+| 2 | -2    |
+| 3 | -1    |
+| 4 | 0     |
+| 5 | 1     |
+| 6 | 2     |
+| 7 | 3     |
+| 8 | 4     |
+
+Negative numbers aren't very useful here.
+
+So we take the absolute value.
+
+```python
+abs(i - middle)
+```
+
+| i | abs(i-4) |
+| - | -------- |
+| 0 | 4        |
+| 1 | 3        |
+| 2 | 2        |
+| 3 | 1        |
+| 4 | 0        |
+| 5 | 1        |
+| 6 | 2        |
+| 7 | 3        |
+| 8 | 4        |
+
+Notice something?
+
+This gives the **distance from the center**.
+
+```text
+Distance:
+4 3 2 1 0 1 2 3 4
+```
+
+---
+
+## Step 3: Convert distance into stars
+
+But we don't want
+
+```text
+4 3 2 1 0
+```
+
+We want
+
+```text
+1 2 3 4 5
+```
+
+How do we flip it?
+
+Just subtract from `n`.
+
+```python
+stars = n - distance
+```
+
+So
+
+```text
+distance
+4 3 2 1 0 1 2 3 4
+
+5-distance
+
+1 2 3 4 5 4 3 2 1
+```
+
+Exactly what we wanted!
+
+Therefore,
+
+```python
+stars = n - abs(i - (n - 1))
+```
+
+which is the same as
+
+```python
+stars = n - abs(n - 1 - i)
+```
+
+---
+
+# This is the real trick
+
+The important realization is **not** the formula.
+
+The important realization is this:
+
+> Whenever a pattern is perfectly symmetric,
+> think about **distance from the center**.
+
+That's why we use
+
+```python
+abs(...)
+```
+
+---
+
+## Here's another example
+
+Suppose the values were
+
+```text
+5 4 3 2 1 2 3 4 5
+```
+
+Again compute the distance:
+
+```text
+distance
+
+4 3 2 1 0 1 2 3 4
+```
+
+This time we **add** 1 instead of subtracting from `n`.
+
+```text
+distance + 1
+
+5 4 3 2 1 2 3 4 5
+```
+
+Formula:
+
+```python
+value = abs(i - middle) + 1
+```
+
+---
+
+## Why I prefer the `min()` formula for beginners
+
+Honestly, I don't expect someone learning DSA patterns to derive
+
+```python
+stars = n - abs(n - 1 - i)
+```
+
+on their own the first time.
+
+The `min()` version is much more intuitive:
+
+```python
+stars = min(i + 1, 2 * n - i - 1)
+```
+
+Because you can literally think:
+
+* Left side increases:
+
+  ```
+  1 2 3 4 5
+  ```
+* Right side decreases:
+
+  ```
+  9 8 7 6 5 4 3 2 1  (before taking the relevant range)
+  ```
+* `min()` chooses the smaller one, giving:
+
+  ```
+  1 2 3 4 5 4 3 2 1
+  ```
+
+When you become comfortable with symmetric patterns, you'll naturally start seeing that the `abs()` version is really just another way of measuring **distance from the center**. In my experience, that's the intuition that makes these formulas stick.
