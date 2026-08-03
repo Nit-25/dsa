@@ -12,6 +12,23 @@ ass Solution:
 obj = Solution()
 obj.pattern17(5)
 
+
+class Solution:
+    def pattern22(self, n):
+        for i in range(n):
+            for j in range(n, i+1, -1):
+                print(" ", end = " ")
+            for k in range(i*2 + 1):
+                alpha = min(k, 2*i - k)
+                print(chr(ord("A") + alpha), end = " ")
+            print()
+
+            
+
+obj = Solution()
+obj.pattern22(4)
+
+
         A 
       A B A 
     A B C B A 
