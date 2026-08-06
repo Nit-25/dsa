@@ -1,0 +1,15 @@
+class Solution:
+    def rotateArrayByOne(self, nums):
+        s = set()
+        
+        for num in nums:
+            if num in s:
+                s.remove(num)
+            else:
+                s.add(num)
+        
+        return s.pop()
+        
+obj = Solution()
+nums = [1, 3, 10, 3, 5, 1, 5]
+print(obj.rotateArrayByOne(nums))
