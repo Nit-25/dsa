@@ -1,0 +1,17 @@
+class Solution:   
+    def singleNumber(self, nums):
+        s = set()
+        
+        for i in nums:
+            if i in s:
+                s.remove(i)
+            else:
+                s.add(i)
+        l_s = list(s)
+        return sorted(l_s)
+    
+obj = Solution()
+nums =  [1, 2, 1, 3, 5, 2]
+obj.singleNumber(nums)
+
+[3, 5]
