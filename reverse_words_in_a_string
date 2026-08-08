@@ -1,0 +1,18 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        l = []
+        i = 0
+        j = i
+        while i < len(s):
+            w = ''
+            while j < len(s) and s[j] != ' ':
+                w += s[j]
+                j += 1
+            j += 1
+            i = j
+            if w != '':
+                l.append(w)
+        l.reverse()
+        return " ".join(l)
+                
+        
